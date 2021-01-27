@@ -24,8 +24,7 @@ Run the experiment on the cluster
 
 The best model generated is voting ensemble model with an approximate accuracy of 91.9%
  
-![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/images/best_Model.png?raw=True)
-
+<img src = https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/best_Model.png>
 
 ** Visualize  the metrics of the best model **
  ![](images/best_model_metrics_1.png)
