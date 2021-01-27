@@ -6,8 +6,7 @@
 
 
 ### Architectural Diagram
-![](images/Architecture.png)
-
+![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/images/Architecture.png)
 
 ### Steps
 ###Authentication: 
@@ -15,7 +14,7 @@
 As I worked in the Udacity Azure Account, so did not need to authenticate and skipped this step.
 
 
-Automated ML Experiment
+### Automated ML Experiment
 Uploaded this dataset into Azure ML Studio using the url provided.
 
 The compute cluster was configured with following settings:Standard_DS12_v2 for the Virtual Machine and 1 as the minimum number of nodes
@@ -28,7 +27,7 @@ The best model generated is voting ensemble model with an approximate accuracy o
  ![](images/best_model.png)
 
 
-** Visualize  the metrics of the best model**
+** Visualize  the metrics of the best model **
  ![](images/best_model_metrics_1.png)
  ![](images/best_model_metrics_2.png)
  
