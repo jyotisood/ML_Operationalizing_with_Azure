@@ -6,7 +6,7 @@
 
 
 ### Architectural Diagram
-![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/images/Architecture.png)
+![alt text](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/images/Architecture.png)
 
 ### Steps
 ###Authentication: 
