@@ -6,7 +6,7 @@
 
 
 ### Architectural Diagram
-![alt text](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/images/Architecture.png)
+![alt text](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/images/Architecture.png?raw=True)
 
 ### Steps
 ###Authentication: 
@@ -24,7 +24,7 @@ Run the experiment on the cluster
 
 The best model generated is voting ensemble model with an approximate accuracy of 91.9%
  
- ![](images/best_model.png)
+![alt text](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/images/best_model.png?raw=True)
 
 
 ** Visualize  the metrics of the best model **
