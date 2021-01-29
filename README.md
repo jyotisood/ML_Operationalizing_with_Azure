@@ -1,138 +1,151 @@
 # ML_Operationalizing_with_Azure
 
 
-### Overview
-##### This is the second project for the Udacity Microsoft Azure ML Nanodegree. We use Bank Marketing dataset to create an AutoML model which is later deployed using Azure Container Instance and can be consumed by REST endpoints. A pipeline using SDK is also created, published and consumed.
+# Table of contents
+- Architectural Diagram
+- Automated ML Experiment
+- Deploy the best model
+- Enable Application and Logging Insights
+- Interact with model using Swagger
+- Consume model endpoints
+- Create and Publish an ML Pipeline
+- Future Suggestions
+- Link to the ScreenCast
+
+## Overview ## 
+This is the second project for the Udacity Microsoft Azure ML Nanodegree. We use Bank Marketing dataset to create an AutoML model which is later deployed using Azure Container Instance and can be consumed by REST endpoints. A pipeline using SDK is also created and published.
 
 
-### Architectural Diagram
+## Architectural Diagram
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/Architecture.png?raw=True)
 
-### Steps
-###Authentication: 
+# Steps
+
+### Authentication: 
 
 As I worked in the Udacity Azure Account, so did not need to authenticate and skipped this step.
 
+## Automated ML Experiment
+The Bank Marketing dataset was preloaded in the Azure ML lab. We use the AutoML feature of Azure ML studio to run on this dataset.
 
-### Automated ML Experiment
-Uploaded this dataset into Azure ML Studio using the url provided.
+The compute cluster was configured with following settings: Standard_DS12_v2 for the Virtual Machine, 1 minimum node and 6 as maximum number of nodes. Concurrancy was set to 5 maximum concurrent iterations and reduced the exit criterion to 1 hour. 
 
-The compute cluster was configured with following settings:Standard_DS12_v2 for the Virtual Machine and 1 as the minimum number of nodes
-create an AutoML experiment to run using the Bank Marketing Dataset which was already loaded in the Azure Workspace. Set ‘'y' as the target column.
-Reduced the Exit Criterion to 1 hour and Concurrency to 5 concurrent iterations max.
-Run the experiment on the cluster
+'y' is set as the target column for this experiment. We run the experiment on the created compute cluster.
 
-The best model generated is voting ensemble model with an approximate accuracy of 91.9%
+The best model generated from the automl run was voting ensemble model with an approximate accuracy of 91.9%
  
-<img src = https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/best_Model.png>
+![image](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/best_Model.png)
 
-** Visualize  the metrics of the best model **
- ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/best-model%20metrics_1.png)
+The other metrics of the best model 'Voting Ensemble' can be seen here:-
+
+ ![image](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/best-model%20metrics_1.png)
  
- ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/best-model%20metrics_2.png)
+ ![image](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/best-model%20metrics_2.png)
  
-### Deploy the best model
-We need to deploy the best model in order to interact with  it. 
-In this step, the model (voting ensemble) was deployed using Azure Container Instance (ACI), with authentication enabled so only authorized users have the key to interact with the model.
+## Deploy the best model
 
-![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/deploy_settings.png)
+In this step, we choose the best model (voting ensemble) for deployment using Azure Container Instance (ACI) and enable the authentication so that only authorized users have the key to interact with the model.
 
-After the best model is successfully deployed, we can access the model endpoints in the Endpoints section.
+![image](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/deploy_settings.png)
 
-![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/Endpoints_best_model_deployed.png)
+After the best model is successfully deployed, we can access the model endpoints in the Endpoints section of Azure ML studio.
+
+![image](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/Endpoints_best_model_deployed.png)
  
-### Enable Application and Logging Insights
+
+## Enable Application and Logging Insights
  
-At the time of deployment Enabling Application Insights and Logs can easily be done but here we do it later by using git bash.
+In the next step, we update the code in logs.py and run it in git bash to enable the 'Application Insights' of the deployed model. 
 
-We modify the script of logs.py and then by running the logs.py script, we enable Application Insights.
+![image](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/logs_py.png)
 
-![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/logs_py.png)
-
-See the Application Insights enabled in the Endpoints and when you click on the Application insights URL, you can get further details.
+Here, we can see the 'Application Insights' enabled for our deployed model and when you click on the Application Insights URL, you can get further details:
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/App_Insights_3.png)
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/App_insights_2.png)
 
 
-### Swagger 
+## Interact with model using Swagger
 
 To consume AutoML model using Swagger, we first need to download the swagger.json file provided to us.
 
-Then we run the swagger.sh and serve.py files separately in order to interact with the swagger instance running locally with the documentation for the HTTP API of the model.
+Then we run the swagger.sh and serve.py files separately which download the latest swagger container UI locally on port 9000.
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/swagger_bash.png)
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/serve.png)
 
-On the local host, Swagger documentation for the HTTP API of our model is seen.
+On the localhost, Swagger UI has been launched successfully.
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/swagger1.png)
 
-After running the script, we can see our best model's documentation instead of the default Swagger page. And this is content of API used for interacting with our deployed model.
+After running the scripts, we can see our deployed model's documentation instead of the default Swagger page. Here we see example input content of API that can be used for interacting with our deployed model.
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/swagger2.png)
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/swagger3.png)
 
 
-### Consume model endpoints
+## Consume model endpoints
 
-Finally, now we can interact with the model and feed some test data to it. Scoring_uri and the primary key are the best way to interact and are updated in the given endpoint.py script.
-After editing scoring_uri and primary key , we run the endpoint.py script and a data.json file is generated and see the response in git bash.
+Finally, now we can interact with the model and feed some test data to it. Scoring_uri and the primary key are updated in the endpoint.py script. It is then run in the git bash which generates the following response:
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/endpoint.py_and_data.json_file.png)
 
 
+## Create and Publish an ML Pipeline
 
-### Create and Publish an ML Pipeline
+In this step, python SDK is used to create and publish a pipeline. 
 
-In this step, python SDK is used to create and publish the pipeline. 
-After uploading and editing the given jupyter notebook with same cluster name, model name, all cells are run through to create a pipeline.
+After uploading and editing the jupyter notebook with our compute cluster name, model name, we run all the cells to create a pipeline.
 
-Pipeline running Overview
+- Pipeline running Overview
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/pipeline_running_overview.png)
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/pipeline_running_view_in_studio.png)
 
 
-Pipeline has been successfully published : view in SDK
+- Pipeline has been successfully published : view in SDK
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/Endpoint_Status_%20in_SDK.png)
 
 
-Pipeline has been successfully created : view in Azure ML Studio
+- Pipeline has been successfully created : view in Azure ML Studio
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/Pipelines-COMPLETED.png)
 
 
-Pipeline Rest Endpoints are created
+- Pipeline Rest Endpoints are created
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/pipelines_completed.png)
 
 
-##### Pipeline Endpoints 
-The piepeline endpoints are seen as active here
+-  Pipeline Endpoints 
+
+The pipeline endpoints are seen as active here
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/Pipelines-ENDPOINT%20ACTIVE.png)
 
 
-#### Status of Run Widget
-The steps and running status can be seen from sdk itself using run widgets.
+- Status of the Run Widgets in Python file:
+
+The steps and running status can be observed from sdk itself using run widgets.
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/Run_widgets_1.png)
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/Run_widgets_2.png)
 
 
-### Future Suggestions
-The current data was imbalanced classes, In future this problem can be looked into.
-Increasing the number of cross validations might help in getting better accuracy.
+## Future Suggestions
+* The current data had imbalanced classes. In future this problem can be looked into.
+* Increasing the number of cross validations might help in getting better accuracy.
+* We could try increasing the Exit Criterion from 1 hour to 3 hours(Default) to find 
+  even more accurate models.
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/problems.png)
 
-#### Link to the ScreenCast
+### Link to the ScreenCast
 
-[Screencast](https://youtu.be/VO3RZQTvn1k)
+[Screencast](https://youtu.be/a7xYtnrVCiU)
