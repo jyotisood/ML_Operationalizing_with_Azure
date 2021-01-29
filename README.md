@@ -23,16 +23,16 @@ This is the second project for the Udacity Microsoft Azure ML Nanodegree. We use
 
 ### Authentication: 
 
-As I worked in the Udacity Azure Account, so did not need to authenticate and skipped this step.
+As I worked in the Udacity Azure Account, so I did not need to authenticate and skipped this step.
 
 ## Automated ML Experiment
 The Bank Marketing dataset was preloaded in the Azure ML lab. We use the AutoML feature of Azure ML studio to run on this dataset.
 
-The compute cluster was configured with following settings: Standard_DS12_v2 for the Virtual Machine, 1 minimum node and 6 as maximum number of nodes. Concurrancy was set to 5 maximum concurrent iterations and reduced the exit criterion to 1 hour. 
+We configure the compute cluster with following settings: Standard_DS12_v2 for the Virtual Machine, 1 minimum node and 6 as maximum number of nodes. Concurrancy is set to 5 maximum concurrent iterations and the exit criterion is reduced to 1 hour. 
 
 'y' is set as the target column for this experiment. We run the experiment on the created compute cluster.
 
-The best model generated from the automl run was voting ensemble model with an approximate accuracy of 91.9%
+The best model that is generated from the automl run is 'voting ensemble' model with an approximate accuracy of 91.9%
  
 ![image](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/best_Model.png)
 
@@ -59,7 +59,7 @@ In the next step, we update the code in logs.py and run it in git bash to enable
 
 ![image](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/logs_py.png)
 
-Here, we can see the 'Application Insights' enabled for our deployed model and when you click on the Application Insights URL, you can get further details:
+Here, we can see the 'Application Insights' enabled for our deployed model and when you click on the Application Insights URL, you can get even more details:
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/App_Insights_3.png)
 
@@ -70,7 +70,7 @@ Here, we can see the 'Application Insights' enabled for our deployed model and w
 
 To consume AutoML model using Swagger, we first need to download the swagger.json file provided to us.
 
-Then we run the swagger.sh and serve.py files separately which download the latest swagger container UI locally on port 9000.
+Then we run the swagger.sh and serve.py files separately which download the latest swagger UI container locally on port 9000.
 
 ![](https://github.com/jyotisood/ML_Operationalizing_with_Azure/blob/main/Images/swagger_bash.png)
 
